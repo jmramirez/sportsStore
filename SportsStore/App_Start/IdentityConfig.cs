@@ -3,6 +3,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using SportsStore.Infrastructure.Identity;
+using System;
+using Microsoft.Owin.Security.OAuth;
 
 [assembly: OwinStartup(typeof(SportsStore.IdentityConfig))]
 namespace SportsStore
@@ -14,7 +16,14 @@ namespace SportsStore
             app.CreatePerOwinContext<StoreUserManager>(StoreUserManager.Create);
             app.CreatePerOwinContext<StoreRoleManager>(StoreRoleManager.Create);
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions { AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie });
+            //.app.UseCookieAuthentication(new CookieAuthenticationOptions { AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie });
+
+            app.UseOAuthBearerTokens(new OAuthAuthorizationServerOptions
+            {
+                Provider = new StoreAuthProvider(),
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/Authenticate")
+            });
 
         }
     }
