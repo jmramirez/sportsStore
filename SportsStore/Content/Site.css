@@ -1,0 +1,65 @@
+﻿html {
+    font-size: 14px;
+}
+
+
+.ui.menu, .ui.message, .ui.button {
+    border-radius: 0;
+}
+
+body {
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.ui.grid {
+    min-height: 100%;
+}
+
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.ui.vertical.stripe{
+    padding: 4em 0em;
+}
+
+.ui.grid.flex > .column:not(.row){
+    display: flex;
+    flex-direction: column;
+}
+
+.flex .ui.button {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+.ui.message.jumbotron{
+    padding: 60px 48px;
+}
+
+.ui.message.jumbotron h1 {
+    font-size: 63px;
+}
+.ui.message.jumbotron p {
+    margin-bottom: 15px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 1.4;
+}

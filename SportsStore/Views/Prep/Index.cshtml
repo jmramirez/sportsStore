@@ -5,45 +5,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<div class="card bg-primary">
-    <a href="/prep/signin" class="btn btn-primary">Sign In</a>
-    <a href="/prep/signout" class="btn btn-primary">Sign Out</a>
-    User: @(HttpContext.Current.User.Identity.Name)
-</div>
-
-<div class="card">
-    <div class="card-header">
-        Products
+<div class="ui container">
+    <h2 class="ui header">Test Page</h2>
+    <div class="segment">
+        <a href="/prep/signin" class="ui small primary button">Sign In</a>
+        <a href="/prep/signout" class="ui small primary button">Sign Out</a>
+        User: @(HttpContext.Current.User.Identity.Name)
     </div>
-    <table class="table table-striped">
-        <tr class="bg-primary">
-            <th>ID</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-        </tr>
-        @foreach (var p in Model)
-        {
+    <div class="ui top attached blue inverted segment">Products</div>
+    <table class="ui compact celled definition bottom attached table">
+        <thead class="full-width">
             <tr>
-                <td>@p.Id</td>
-                <td>@p.Name</td>
-                <td>@p.Category</td>
-                <td>@p.Price</td>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Name</td>
+                    <td>@p.Category</td>
+                    <td>@p.Price</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot class="full-width">
+            <tr>
+                <th></th>
+                <th colspan="4">
+                    @using (Html.BeginForm("SaveProduct", "Prep"))
+                    {
+                        <input type="hidden" name="Name" value="Zippy Running Shoes" />
+                        <input type="hidden" name="Category" value="Running" />
+                        <input type="hidden" name="Description" value="Set a new Record Time" />
+                        <input type="hidden" name="Price" value="159.99s" />
+
+                        <button class="ui small primary button" type="submit">Create</button>
+                        <a href="/prep/deleteproduct/2" class="ui small primary button">Delete</a>
+                    }
+                </th>
+            </tr>
+        </tfoot>
     </table>
+
 </div>
 
-@using (Html.BeginForm("SaveProduct", "Prep"))
-{
-    <input type="hidden" name="Name" value="Zippy Running Shoes" />
-    <input type="hidden" name="Category" value="Running" />
-    <input type="hidden" name="Description" value="Set a new Record Time" />
-    <input type="hidden" name="Price" value="159.99s" />
 
-    <button class="btn btn-primary" type="submit">Create</button>
-    <a href="/prep/deleteproduct/2" class="btn btn-primary">Delete</a>
-}
+
 
